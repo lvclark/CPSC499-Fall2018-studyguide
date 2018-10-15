@@ -10,5 +10,5 @@ rmdfiles <- list.files(pattern = "\\.Rmd$")
 # render them to GitHub Markdown one at a time
 for(f in rmdfiles){
   render(f, 
-         output_format = md_document("gfm"))
+         output_format = md_document("markdown_github"))
 }
