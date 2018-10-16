@@ -26,3 +26,12 @@ this symbol, nothing in your environment changes.
 ``` r
 x <- 2 + 3
 ```
+##Indexing a single column
+You can index a column by using $ or brackets with a comma. Remember when using commas with the brackets rows are listed
+before the comma and columns are listed after the comma.
+
+``` r
+data_frame$column_name
+data_fram[,column_name]
+1 + 1
+```
