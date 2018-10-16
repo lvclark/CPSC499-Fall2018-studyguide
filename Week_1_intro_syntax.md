@@ -43,6 +43,25 @@ When you want to index certain rows and columns use the brackets. Numbers listed
 
 ``` r
 #data_frame[1:2,1:6] This will show rows 1 through 2 and columns 1 through 6
-#data_frame[2,3] This will show 2 column 3
+#data_frame[2,3] This will show row 2 column 3
 #data_frame[2,] This will show only row 2
+```
+
+Using c() for idexing
+---------------------
+
+When you need to index certain rows or columns that aren't next to each other (so you can't used the colon) you can list your specific rows and columns using c()
+
+``` r
+#data_frame[c(2,4,6),1:6] This will show rows 2, 4, and 6 and columns 1 through 6
+```
+
+When you want index everything but certain items
+------------------------------------------------
+
+When want index but certain items you just need to use a dash (-).
+
+``` r
+#data_frame[-c(2,4,6),1:6] This will show columns 1 through 6 and all rows will appear except except 2, 4, and 6
+#data_frame[1:2,-(1:6)] This will show rows 1 through 2 and won't show columns 1 through 6
 ```
