@@ -28,12 +28,12 @@ x <- 2 + 3
 Indexing a single column
 ------------------------
 
-You can index a column by using $ or brackets with a comma. Remember when using commas with the brackets rows are listed before the comma and columns are listed after the comma.
+You can index a column by using $ or brackets with a comma. Remember when using commas with the brackets rows are listed before the comma and columns are listed after the comma. Also when using $ you need to list the desired column name while with brackets you need to list the number associated with the column.
 
 ``` r
 #data_frame$column_name 
 
-#data_frame[,column_name]
+#data_frame[,column_number]
 ```
 
 Indexing Specific Rows and Columns
