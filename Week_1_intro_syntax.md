@@ -65,3 +65,12 @@ When want index but certain items you just need to use a dash (-).
 #data_frame[-c(2,4,6),1:6] This will show columns 1 through 6 and all rows will appear except except 2, 4, and 6
 #data_frame[1:2,-(1:6)] This will show rows 1 through 2 and won't show columns 1 through 6
 ```
+
+Using Brackets and Booleans to Filter Data
+------------------------------------------
+
+You can use brackets and Booleans to only show data that fit specified paratmeters.
+
+``` r
+# CO2[CO2$Treatment == "chilled" & CO2$conc > 400,] The best example wast from lab 1. This code will return values from a dataframe that I previously named CO2 that are labelled as chilled in the Treatment column and have a value greater than 400 in the conc column.
+```
