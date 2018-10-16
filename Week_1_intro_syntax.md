@@ -24,8 +24,10 @@ Any time you create a variable, or change the value of a variable, in R, you use
 ``` r
 x <- 2 + 3
 ```
-
 Indexing a single column You can index a column by using $ or brackets with a comma. Remember when using commas with the brackets rows are listed before the comma and columns are listed after the comma.
 
-data_frame$column_name
+``` r
+data_frame$column_name 
+
 data_frame[,column_name]
+```
