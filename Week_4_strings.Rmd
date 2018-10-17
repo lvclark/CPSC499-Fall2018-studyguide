@@ -50,8 +50,10 @@ head(MSI)
 "sep" option is used to add a separator between strings
 
 ```{r echo=TRUE}
-paste("Miscanthus", "sinensis", sep = ":")# sep"" , removes spaces between strings
-head(paste(germplasm_data$X.sample_name, germplasm_data$X.organism, sep = "_"))#use paster on a vector
+# sep"" removes spaces between strings
+paste("Miscanthus", "sinensis", sep = ":")
+#use paste on a vector to concatenate 2 columns
+head(paste(germplasm_data$X.sample_name, germplasm_data$X.organism, sep = "_"))
 
 ```
 
@@ -59,33 +61,128 @@ head(paste(germplasm_data$X.sample_name, germplasm_data$X.organism, sep = "_"))#
 Use paste with common separators like tab and new line
 ```{r echo=TRUE}
 new <- paste(germplasm_data$X.sample_name[1:5], collapse = "\n")
-cat(new)#print line breaks
+#print line breaks
+cat(new)
 
 ```
 
-*nchar* counts the number of characters in a string
-it can also be used in  vectorized manner
+**nchar** counts the number of characters in a string, it can also be used in  vectorized manner
 
 ```{r echo=TRUE}
 nchar("elephantiasis")
-nchar(germplasm_data$X.sample_name)#get the length of characers in a vector
+#get the length of characers in a vector
+nchar(germplasm_data$X.sample_name)
 ```
 
-*substring* used to subset a string, 
+**substring** used to subset a string
 
 ```{r echo=TRUE}
-substring("elephantiasis", 2, 5)#2-is the start nd 5 the stop positions
-head(substring(germplasm_data$X.organism, 12, nchar(germplasm_data$X.organism)))#apply to a vector
+#2 and 5 are the start and stop positions
+substring("elephantiasis", 2, 5)
+#apply to a vector
+head(substring(germplasm_data$X.organism, 12, nchar(germplasm_data$X.organism)))
 
 ```
-*strsplit* used to subset a string,
+**strsplit** splits a string into multiple strings
 
-## Including Plots
+returns a list one vector for each original string
+```{r echo=TRUE}
+strsplit("this is the day", split = " ")#split by space character
+strsplit("this is the day", split = " ")[[1]]
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+**formatC** and **prettyNum** used to convert numbers to text
+```{r echo=TRUE}
+mynum <- c(1000, 1.80, 475757686, 1.46585858589)
+# scientific notation
+formatC(mynum, digits = 3, format = "g")
+#pad with zero on left
+mynum2 <- 1:10
+formatC(mynum2, flag="0", width=2)
+mynum3 <- 1000:1005
+prettyNum(mynum3, big.mark = ",")
+prettyNum(mynum3, big.mark = " ") 
+
+```
+
+**match** can find the match of a value within a vector, handy for reordering data
+```{r echo=TRUE}
+match(c("a","b"), c("z","q","a","m","b"))
+
+```
+
+A vector can have **names** attributes giving names to each of its elements
+
+
+```{r echo=TRUE}
+myvect <- c(2,3,4,5)
+names(myvect) <- c("a","b","c","d")
+myvect
+```
+
+
+There are functions to assign or retrieve names fronm vectors: names, colnames,rownames
+
+```{r echo=TRUE}
+names(myvect)
+#get column names of our dataframe
+colnames(germplasm_data)
+```
+
+**Pattern Matching**
+
+**grep** - find matched across a vector of strings, returns numeric index or the string itself
+```{r echo=TRUE}
+#make a vector called fruits
+fruits <- c("orange", "banana", "apple")
+
+grep("a", fruits)
+grep("an", fruits)
+grepl("an", fruits)
+```
+
+**find and replace** using **sub and gsub**
+```{r echo=TRUE}
+#substitute every match
+gsub("an", "xl", fruits)
+#sub first match per string
+sub("an", "xl", fruits)
+```
+
+**Regular expressions**  used when you want to search for an overal pattern
+
+can be used with grep, grepexpr, sub, gsub, strsplit to search patterns
+
+```{r echo=TRUE}
+#find a match begining with Chr
+grep("^Chr", c("Chr01", "blahChr", "12Chr34")) 
+
+#$ finds a fruit ending with e
+fruits
+grep("e$", fruits) 
+#starts with ^a followed by any number of character then ends with $e
+grep("^a.*e$", fruits)
+#{2} 2 matches of an
+grep("(an){2}", fruits)
+```
+
+use regular expressions to find all sample names from our dataset that stat with "JM2014-S" or "JM2014-K"
+
+
+grep("^JM2014-[SK]-[[:digit:]]{1,2}$", germplasm_data$X.sample_name,
+     value = TRUE)# see use of digit
+grep("^JM2014-[SK]-[[:digit:]][[:punct:]]{1,2}$", germplasm_data$X.sample_name,
+     value = TRUE)
+
+```{r echo=TRUE}
+grep("^JM2014-[SK]-[0-9]{1,2}$", germplasm_data$X.sample_name,value = TRUE)
+#or we can use
+grep("^JM2014-[SK]-[[:digit:]]{1,2}$", germplasm_data$X.sample_name,
+     value = TRUE)
+```
+
+
+
+
+
