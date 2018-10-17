@@ -169,12 +169,6 @@ grep("(an){2}", fruits)
 
 use regular expressions to find all sample names from our dataset that stat with "JM2014-S" or "JM2014-K"
 
-
-grep("^JM2014-[SK]-[[:digit:]]{1,2}$", germplasm_data$X.sample_name,
-     value = TRUE)# see use of digit
-grep("^JM2014-[SK]-[[:digit:]][[:punct:]]{1,2}$", germplasm_data$X.sample_name,
-     value = TRUE)
-
 ```{r echo=TRUE}
 grep("^JM2014-[SK]-[0-9]{1,2}$", germplasm_data$X.sample_name,value = TRUE)
 #or we can use

@@ -1,7 +1,7 @@
 R Markdown
 ----------
 
-Typing within 'single' or "double" quotes will create a string
+Typing within 'single' or "double" quotes will create a string or character vector in R
 
 You can also have a vector of strings
 
@@ -18,7 +18,7 @@ class(mystring)
 
     ## [1] "character"
 
-To manipulate strings further we wil import data that we used in the course week 4 on compass Take note of the option *stringsAsFactors = FALSE* this ensures character data is not converted to a categorical variable/ factor
+To manipulate strings further we wil import data that we used in the course week 4. Take note of the option *stringsAsFactors = FALSE* this ensures character data is not converted to a categorical variable
 
 ``` r
 germplasm_data <- read.table("Week_4_data/Plant.1.0 New Msa.txt",sep="\t", header = TRUE,
@@ -28,25 +28,21 @@ germplasm_data <- read.table("Week_4_data/Plant.1.0 New Msa.txt",sep="\t", heade
 We look at the first few lines of the data, you see we have string characters
 
 ``` r
-germplasm_data[1:3,1:3]
+germplasm_data[1:2,1:2]
 ```
 
     ##   X.sample_name
     ## 1  IGR-2011-005
     ## 2    UI10-00117
-    ## 3    UI11-00005
     ##                                                    sample_title
     ## 1 Leaf sample from Miscanthus sacchariflorus clone IGR-2011-005
     ## 2   Leaf sample from Miscanthus sacchariflorus clone UI10-00117
-    ## 3   Leaf sample from Miscanthus sacchariflorus clone UI11-00005
-    ##   bioproject_accession
-    ## 1          PRJNA342314
-    ## 2          PRJNA342314
-    ## 3          PRJNA342314
 
-String operators ==, !=, &gt; , &lt;, &gt;=, &lt;= work
+**String operators**
 
-the example below is used to filter the organisms called *Miscanthus sinensis*
+==, !=, &gt; , &lt;, &gt;=, &lt;= work
+
+in the example below "==" is used to filter the organisms called *Miscanthus sinensis*
 
 ``` r
 MSI <- germplasm_data$X.organism[germplasm_data$X.organism == "Miscanthus sinensis"]
@@ -56,51 +52,35 @@ head(MSI)
     ## [1] "Miscanthus sinensis" "Miscanthus sinensis" "Miscanthus sinensis"
     ## [4] "Miscanthus sinensis" "Miscanthus sinensis"
 
-**paste** is a handy function the can be used to concatenate strings We will use paste to concatenate string columns in our data set
+**paste** is a handy function the can be used to concatenate strings
+
+"sep" option is used to add a separator between strings
 
 ``` r
-head(germplasm_data$X.sample_name)# this are the sample names
+# sep"" removes spaces between strings
+paste("Miscanthus", "sinensis", sep = ":")
 ```
 
-    ## [1] "IGR-2011-005" "UI10-00117"   "UI11-00005"   "UI11-00006"  
-    ## [5] "UI11-00027"   "UI11-00031"
+    ## [1] "Miscanthus:sinensis"
 
 ``` r
-head(germplasm_data$X.organism)#organism names
+#use paste on a vector to concatenate 2 columns
+head(paste(germplasm_data$X.sample_name, germplasm_data$X.organism, sep = "_"))
 ```
 
-    ## [1] "Miscanthus sacchariflorus"  "Miscanthus sacchariflorus" 
-    ## [3] "Miscanthus sacchariflorus"  "Miscanthus sacchariflorus" 
-    ## [5] "Miscanthus sacchariflorus"  "Miscanthus lutarioriparius"
-
-``` r
-head(paste(germplasm_data$X.sample_name, ":", germplasm_data$X.organism))
-```
-
-    ## [1] "IGR-2011-005 : Miscanthus sacchariflorus"
-    ## [2] "UI10-00117 : Miscanthus sacchariflorus"  
-    ## [3] "UI11-00005 : Miscanthus sacchariflorus"  
-    ## [4] "UI11-00006 : Miscanthus sacchariflorus"  
-    ## [5] "UI11-00027 : Miscanthus sacchariflorus"  
-    ## [6] "UI11-00031 : Miscanthus lutarioriparius"
-
-``` r
-head(paste(germplasm_data$X.sample_name, ", species:", 
-      germplasm_data$X.organism, sep = ""))# sep"" , removes spaces between strings
-```
-
-    ## [1] "IGR-2011-005, species:Miscanthus sacchariflorus"
-    ## [2] "UI10-00117, species:Miscanthus sacchariflorus"  
-    ## [3] "UI11-00005, species:Miscanthus sacchariflorus"  
-    ## [4] "UI11-00006, species:Miscanthus sacchariflorus"  
-    ## [5] "UI11-00027, species:Miscanthus sacchariflorus"  
-    ## [6] "UI11-00031, species:Miscanthus lutarioriparius"
+    ## [1] "IGR-2011-005_Miscanthus sacchariflorus"
+    ## [2] "UI10-00117_Miscanthus sacchariflorus"  
+    ## [3] "UI11-00005_Miscanthus sacchariflorus"  
+    ## [4] "UI11-00006_Miscanthus sacchariflorus"  
+    ## [5] "UI11-00027_Miscanthus sacchariflorus"  
+    ## [6] "UI11-00031_Miscanthus lutarioriparius"
 
 Use paste with common separators like tab and new line
 
 ``` r
-new <- paste(germplasm_data$X.sample_name[1:10], collapse = "\n")
-cat(new)#print line breaks
+new <- paste(germplasm_data$X.sample_name[1:5], collapse = "\n")
+#print line breaks
+cat(new)
 ```
 
     ## IGR-2011-005
@@ -108,13 +88,8 @@ cat(new)#print line breaks
     ## UI11-00005
     ## UI11-00006
     ## UI11-00027
-    ## UI11-00031
-    ## UI11-00032
-    ## UI11-00033
-    ## UI11-00034
-    ## UI11-00035
 
-*nchar* counts the number of characters in a string it can also be used in vectorized manner
+**nchar** counts the number of characters in a string, it can also be used in vectorized manner
 
 ``` r
 nchar("elephantiasis")
@@ -123,7 +98,8 @@ nchar("elephantiasis")
     ## [1] 13
 
 ``` r
-nchar(germplasm_data$X.sample_name)#get the length of characers in a vector
+#get the length of characers in a vector
+nchar(germplasm_data$X.sample_name)
 ```
 
     ##   [1] 12 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
@@ -152,28 +128,214 @@ nchar(germplasm_data$X.sample_name)#get the length of characers in a vector
     ## [530]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
     ## [553]  5  5  6  8  9  9
 
-*substring* used to subset a string,
+**substring** used to subset a string
 
 ``` r
-substring("elephantiasis", 2, 5)#2-is the start nd 5 the stop positions
+#2 and 5 are the start and stop positions
+substring("elephantiasis", 2, 5)
 ```
 
     ## [1] "leph"
 
 ``` r
-head(substring(germplasm_data$X.organism, 12, nchar(germplasm_data$X.organism)))#apply to a vector
+#apply to a vector
+head(substring(germplasm_data$X.organism, 12, nchar(germplasm_data$X.organism)))
 ```
 
     ## [1] "sacchariflorus"  "sacchariflorus"  "sacchariflorus"  "sacchariflorus" 
     ## [5] "sacchariflorus"  "lutarioriparius"
 
-*strsplit* used to subset a string,
+**strsplit** splits a string into multiple strings
 
-Including Plots
----------------
+returns a list one vector for each original string
 
-You can also embed plots, for example:
+``` r
+strsplit("this is the day", split = " ")#split by space character
+```
 
-![](Week_4_strings_files/figure-markdown_github/pressure-1.png)
+    ## [[1]]
+    ## [1] "this" "is"   "the"  "day"
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+``` r
+strsplit("this is the day", split = " ")[[1]]
+```
+
+    ## [1] "this" "is"   "the"  "day"
+
+**formatC** and **prettyNum** used to convert numbers to text
+
+``` r
+mynum <- c(1000, 1.80, 475757686, 1.46585858589)
+# scientific notation
+formatC(mynum, digits = 3, format = "g")
+```
+
+    ## [1] "1e+03"    " 1.8"     "4.76e+08" "1.47"
+
+``` r
+#pad with zero on left
+mynum2 <- 1:10
+formatC(mynum2, flag="0", width=2)
+```
+
+    ##  [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10"
+
+``` r
+mynum3 <- 1000:1005
+prettyNum(mynum3, big.mark = ",")
+```
+
+    ## [1] "1,000" "1,001" "1,002" "1,003" "1,004" "1,005"
+
+``` r
+prettyNum(mynum3, big.mark = " ") 
+```
+
+    ## [1] "1 000" "1 001" "1 002" "1 003" "1 004" "1 005"
+
+**match** can find the match of a value within a vector, handy for reordering data
+
+``` r
+match(c("a","b"), c("z","q","a","m","b"))
+```
+
+    ## [1] 3 5
+
+A vector can have **names** attributes giving names to each of its elements
+
+``` r
+myvect <- c(2,3,4,5)
+names(myvect) <- c("a","b","c","d")
+myvect
+```
+
+    ## a b c d 
+    ## 2 3 4 5
+
+There are functions to assign or retrieve names fronm vectors: names, colnames,rownames
+
+``` r
+names(myvect)
+```
+
+    ## [1] "a" "b" "c" "d"
+
+``` r
+#get column names of our dataframe
+colnames(germplasm_data)
+```
+
+    ##  [1] "X.sample_name"        "sample_title"         "bioproject_accession"
+    ##  [4] "X.organism"           "isolate"              "cultivar"            
+    ##  [7] "ecotype"              "age"                  "dev_stage"           
+    ## [10] "X.geo_loc_name"       "X.tissue"             "biomaterial_provider"
+    ## [13] "ploidy"               "cell_line"            "cell_type"           
+    ## [16] "collected_by"         "collection_date"      "culture_collection"  
+    ## [19] "disease"              "disease_stage"        "genotype"            
+    ## [22] "growth_protocol"      "height_or_length"     "isolation_source"    
+    ## [25] "lat_lon"              "phenotype"            "population"          
+    ## [28] "sample_type"          "sex"                  "specimen_voucher"    
+    ## [31] "temp"                 "treatment"            "description"
+
+**Pattern Matching**
+
+**grep** - find matched across a vector of strings, returns numeric index or the string itself
+
+``` r
+#make a vector called fruits
+fruits <- c("orange", "banana", "apple")
+
+grep("a", fruits)
+```
+
+    ## [1] 1 2 3
+
+``` r
+grep("an", fruits)
+```
+
+    ## [1] 1 2
+
+``` r
+grepl("an", fruits)
+```
+
+    ## [1]  TRUE  TRUE FALSE
+
+**find and replace** using **sub and gsub**
+
+``` r
+#substitute every match
+gsub("an", "xl", fruits)
+```
+
+    ## [1] "orxlge" "bxlxla" "apple"
+
+``` r
+#sub first match per string
+sub("an", "xl", fruits)
+```
+
+    ## [1] "orxlge" "bxlana" "apple"
+
+**Regular expressions** used when you want to search for an overal pattern
+
+can be used with grep, grepexpr, sub, gsub, strsplit to search patterns
+
+``` r
+#find a match begining with Chr
+grep("^Chr", c("Chr01", "blahChr", "12Chr34")) 
+```
+
+    ## [1] 1
+
+``` r
+#$ finds a fruit ending with e
+fruits
+```
+
+    ## [1] "orange" "banana" "apple"
+
+``` r
+grep("e$", fruits) 
+```
+
+    ## [1] 1 3
+
+``` r
+#starts with ^a followed by any number of character then ends with $e
+grep("^a.*e$", fruits)
+```
+
+    ## [1] 3
+
+``` r
+#{2} 2 matches of an
+grep("(an){2}", fruits)
+```
+
+    ## [1] 2
+
+use regular expressions to find all sample names from our dataset that stat with "JM2014-S" or "JM2014-K"
+
+``` r
+grep("^JM2014-[SK]-[0-9]{1,2}$", germplasm_data$X.sample_name,value = TRUE)
+```
+
+    ##  [1] "JM2014-S-1"  "JM2014-S-2"  "JM2014-S-3"  "JM2014-S-4"  "JM2014-S-5" 
+    ##  [6] "JM2014-S-6"  "JM2014-K-1"  "JM2014-K-2"  "JM2014-K-3"  "JM2014-K-4" 
+    ## [11] "JM2014-K-5"  "JM2014-K-6"  "JM2014-K-7"  "JM2014-K-8"  "JM2014-K-9" 
+    ## [16] "JM2014-K-10" "JM2014-K-11" "JM2014-K-12" "JM2014-K-13" "JM2014-K-14"
+    ## [21] "JM2014-K-15"
+
+``` r
+#or we can use
+grep("^JM2014-[SK]-[[:digit:]]{1,2}$", germplasm_data$X.sample_name,
+     value = TRUE)
+```
+
+    ##  [1] "JM2014-S-1"  "JM2014-S-2"  "JM2014-S-3"  "JM2014-S-4"  "JM2014-S-5" 
+    ##  [6] "JM2014-S-6"  "JM2014-K-1"  "JM2014-K-2"  "JM2014-K-3"  "JM2014-K-4" 
+    ## [11] "JM2014-K-5"  "JM2014-K-6"  "JM2014-K-7"  "JM2014-K-8"  "JM2014-K-9" 
+    ## [16] "JM2014-K-10" "JM2014-K-11" "JM2014-K-12" "JM2014-K-13" "JM2014-K-14"
+    ## [21] "JM2014-K-15"
