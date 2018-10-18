@@ -12,3 +12,4 @@ for(f in rmdfiles){
   render(f, 
          output_format = md_document("markdown_github"))
 }
+

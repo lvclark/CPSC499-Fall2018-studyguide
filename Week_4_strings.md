@@ -1,5 +1,5 @@
-R Markdown
-----------
+Week 4 - working with strings
+-----------------------------
 
 Typing within 'single' or "double" quotes will create a string or character vector in R
 
