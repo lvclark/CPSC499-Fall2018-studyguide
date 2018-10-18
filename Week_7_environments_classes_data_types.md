@@ -25,3 +25,14 @@ You can also embed plots, for example:
 ![](Week_7_environments_classes_data_types_files/figure-markdown_github/pressure-1.png)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Converting from factor to numeric
+---------------------------------
+
+If you are ever in the situation where you need to convert factors to numeric you must first convert to character and then to numeric. If you try to go directly from factor to numeric it'll just convert you values to the level (like level 1,2,3, etc.) that is associated with it.
+
+    # a <- as.character(x)
+    # b <- as.numeric(a)
+
+    # you can also do this in one line
+    # a <- as.numeric(as.character(x))
