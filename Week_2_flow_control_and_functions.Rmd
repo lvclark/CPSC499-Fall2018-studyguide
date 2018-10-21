@@ -4,10 +4,122 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+```
+## If/else, loops, and function
+
+## Flow control and grouping 
+Curly brackets ({}) can be used to group commands allowing for the included code to be skipped in certain circumstances.
+
+```{r}
+?Control # Explains how skipping or repeating code works
+
+
+if(A) {
+B
+}
+C
+
+x <- 5
+if(x < 10) {
+y <- x + 5
+}
+y + 5
+
+# Using ({}) allows us to run command "B" if "A" is true however if "A" is false, command "B" will be skipped and "c" will be ran. In this case, if x is less than "10" 5 will be added twice.  
+
+if(A){
+  B
+} else {
+  C
+}
+D
+x <- 5
+if(x < 10){
+  x + 20
+} else {
+  x + 100
+}
+D
+# else can be added to the if statement. This will run command "B" if "A" is true and "C" if "A" is false. Whether "A" is true or false.
+
+
 ```
 
-## For loops
+## Using AND and OR with IF
+& = vectorized AND
+| = vectorized OR
+It is important to use (&& or ||) in an if statement if you only want to evaluate one element, not whole vector
 
-`for` loops are very useful when you need to do something repeatedly.  You can
-loop over any vector or list.
+```{r}
+x <- 3
+if(x > 10 || x == 2  ){
+  print('Hi')
+}
+# "&" works the same way in if statements.
+```
+
+## Functions
+Anatomy
+function name - how you can call function in the future 
+arguments - inputs 
+return statement - determines output of function
+function body - contains all parts of the function
+comments - explain the function
+
+```{r}
+function1 <- function(x){
+  output <- if(x > 10 || x == 2  ){
+  print('Hi')
+}
+return(output)
+}
+function1(2) # The or statement from above can be put into a function and now any number can be put into the function to asses.
+```
+
+## Variable scope 
+Variables within the body of the function come from the arguments stated in the beginning of the function. Arguments and variables created in the function are not accessible within the global enviornment
+
+## Errors and Warnings 
+"stop" will throw an error and stop execution of the function
+"warning" will throw a warning but continue the execution of the function.
+"message" will print a custom message same as an error or warning.
+
+```{r}
+x <- 2
+if(x > 10 || x == 2  ){
+  stop("Unwanted number")
+}
+# warning and message can be used in similar ways as stop is in the above example
+```
+
+## Source Code 
+You can load functions from other files using the source function
+
+## Loops
+Command will be ran on each vector character until end is reached.
+
+```{r}
+x <- 1:3
+for(i in x){
+newvec[i] <- i + 2
+}
+sum(newvec)
+# this for loop adds 2 to each value in the vector then sums the new vector.
+```
+
+## Interrupting and Skipping ahead
+"break" or "next" can be used within a loop
+
+## While loop
+This command loops through a command until condition A is untrue 
+
+```{r}
+x <- 1
+while(x < 5){
+  x = x + 1
+  print(x)
+}
+# This code will loop through until the output is greater or equal to 5. 
+
+```
