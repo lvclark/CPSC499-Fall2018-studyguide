@@ -7,128 +7,131 @@ Topics are listed in slide order by week for both lecture and lab; consider usin
 ## Functions:
 
 ### Week 1
-read.table
-read.csv
-c
-print
+* `read.table`
+* `read.csv`
+* `c`
+* `print`
 
 ### Week 2
-if
-else
-while
-for
-&, |, &&, ||
-function
-stop
-warning
-message
-return
-is.numeric
-source
-library
-install.packages
-list
-break
-next
+* `if`
+* `else`
+* `while`
+* `for`
+* &, |, &&, ||
+* `function`
+* `stop`
+* `warning`
+* `message`
+* `return`
+* `is.numeric`
+* `source`
+* `library`
+* `install.packages`
+* `list`
+* `break`
+* `next`
 
 ### Week 3
-par
-plot
-unique
-which
-lattice::xyplot
-ggplot2:ggplot
-rgb
-col2rgb
-abline
-plotrix::draw.circle
-plotrix::draw.ellipse
-plotrix::floating.pie
-windowsFonts
-pdf
-postscript
-cairo_pdf
-cairo_ps
-svg
-dev.off
+* `par`
+* `plot`
+* `unique`
+* `which`
+* `lattice::xyplot`
+* `ggplot2:ggplot`
+* `rgb`
+* `col2rgb`
+* `abline`
+* `plotrix::draw.circle`
+* `plotrix::draw.ellipse`
+* `plotrix::floating.pie`
+* `windowsFonts`
+* `pdf`
+* `postscript`
+* `cairo_pdf`
+* `cairo_ps`
+* `svg`
+* `dev.off`
 
 ### Week 4
-read.table
-read.csv
-readLines
-paste
-nchar
-substring
-strsplit
-match
-names
-rownames
-colnames
-grep
-grepl
-sub
-gsub
-regexpr
-gregexpr
+* `read.table`
+* `read.csv`
+* `readLines`
+* `paste`
+* `nchar`
+* `substring`
+* `strsplit`
+* `match`
+* `names`
+* `rownames`
+* `colnames`
+* `grep`
+* `grepl`
+* `sub`
+* `gsub`
+* `regexpr`
+* `gregexpr`
 
 ### Week 5
-file
-readLines
-writeLines
-close
-read.table
-read.csv
-write.table
-write.csv
-read.fwf
-scan
-cat
-write
-tempfile
-save
-save.image
-load
+* `file`
+* `readLines`
+* `writeLines`
+* `close`
+* `read.table`
+* `read.csv`
+* `write.table`
+* `write.csv`
+* `read.fwf`
+* `scan`
+* `cat`
+* `write`
+* `tempfile`
+* `save`
+* `save.image`
+* `load`
 
 ### Week 6
-matrix
-as.matrix
-image
-heatmap
-dist
-cmdscale
-diag
-upper.tri
-lower.tri
-cbind
-rbind
-array
-aperm
-rowSums, rowMeans, colSums, colMeans
-apply
-sweep
-list
-lapply
-tapply
-sapply
-mapply
+* `matrix`
+* `as.matrix`
+* `image`
+* `heatmap`
+* `dist`
+* `cmdscale`
+* `diag`
+* `upper.tri`
+* `lower.tri`
+* `cbind`
+* `rbind`
+* `array`
+* `aperm`
+* `rowSums`
+* `rowMeans`
+* `colSums`
+* `colMeans`
+* `apply`
+* `sweep`
+* `list`
+* `lapply`
+* `tapply`
+* `sapply`
+* `mapply`
 
 ### Week 7
-length
-mapply
-sapply
-tapply
-class
-typeof
-is.numeric
-is.factor
-is.integer
-is.character
-as.numeric
-as.factor
-as.integer
-as.character
-is.vector
-object.size
+* `length`
+* `mapply`
+* `sapply`
+* `tapply`
+* `class`
+* `typeof`
+* `is.numeric`
+* `is.factor`
+* `is.integer`
+* `is.character`
+* `as.numeric`
+* `as.factor`
+* `as.integer`
+* `as.character`
+* `is.vector`
+* `object.size`
 
 
 ## Topics:
