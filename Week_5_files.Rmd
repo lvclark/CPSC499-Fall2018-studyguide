@@ -26,3 +26,62 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## File Properties 
+
+Files are a linear arangement of data points. The data they store are either 0's or 1's. Files are a linear set of bytes, with 1 bit being equal to 8 bits. The bit is what is eqal to either 0 or 1.  
+
+When you or a program access a file, a connection is opened.When you are done with the file, the connection is closed. 
+
+Code for using a file.
+
+file - opens a connection, either a writing or reading connection
+readLines - preview a file a few lines at a time
+writeLines - writes just hte sequences to the new file.
+close - closes the connection
+
+Files can be compressed to save processing time. Different formats incluse ZIP or GZIP.
+
+opening and closing connections can be useful if you file is very large and you dont want to use a lot of memory all at once.
+
+## Writing vs Appending 
+
+When you open a connection in mode write, any changes you make will overwrite the origional file.
+
+when you are in mode append, any changes will be added to the end of the file
+
+
+## read.table 
+
+Using read.table will create an object of class data frame. A data frame is a list of vectors that are the same length.
+
+There are different ways to subset a data frame.
+mydata$column-name
+mydata[[1]]
+mydata[1:5, 1:5]
+
+if your data frame has column headers, you need to specify that when you read the table in.
+use header folowed by sep and then "" with whatever character seperates the data between the quotes.
+
+You can also recognize missing values using na.strings
+
+## write.table 
+
+Exports a data frams to a file
+
+to export as an excel file use write.csv
+
+use col.names or row.names if you want the header or row names included in the file you are creating. 
+
+## Saving objects in your R environment
+
+Instead of exporting a file you can save it in your r environment as an .RData file.
+
+use save.image, or save for large datasets.
+
+downside: has to beopened in R
+
+load is used to import these files into R.
+
+
+
