@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Flow control and grouping 
 Curly brackets ({}) can be used to group commands allowing for the included code to be skipped in certain circumstances.
 
-```{r}
+```{r eval = FALSE}
 ?Control # Explains how skipping or repeating code works
 
 
@@ -85,7 +85,7 @@ Variables within the body of the function come from the arguments stated in the 
 "warning" will throw a warning but continue the execution of the function.
 "message" will print a custom message same as an error or warning.
 
-```{r}
+```{r eval = FALSE}
 x <- 2
 if(x > 10 || x == 2  ){
   stop("Unwanted number")
@@ -99,7 +99,7 @@ You can load functions from other files using the source function
 ## Loops
 Command will be ran on each vector character until end is reached.
 
-```{r}
+```{r eval = FALSE}
 x <- 1:3
 for(i in x){
 newvec[i] <- i + 2
